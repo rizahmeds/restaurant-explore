@@ -1,0 +1,50 @@
+<!-- templates/home.html -->
+{% extends 'base.html' %}
+
+{% block title %}Restaurants Search{% endblock %}
+
+{% block content %}
+<table class="table table-bordered" id="myTable">
+	<thead>
+	    <tr>
+	        <th>Restaurant id</th>
+	        <th>Name</th>
+	        <th>Cuisines</th>
+			<th>Average cost for two</th>
+			<th>Currency</th>
+			<th>Has table booking</th>
+			<th>Has online delivery</th>
+			<th>Aggregate rating</th>
+			<th>Rating color</th>
+			<th>Rating text</th>
+			<th>Votes</th></th>
+
+	    </tr>
+	</thead>
+    {% for restaurant in object_list %}
+	<tbody>    
+	    <tr> 
+	        <td>{{ restaurant.restaurant_id }}</td>
+	        <td>{{ restaurant.restaurant_name }}</td>
+			<td>{{ restaurant.cuisines }}</td>
+			<td>{{ restaurant.average_cost_for_two }}</td>
+			<td>{{ restaurant.currency }}</td>
+			<td>{{ restaurant.has_table_booking }}</td>
+			<td>{{ restaurant.has_online_delivery }}</td>
+			<td>{{ restaurant.aggregate_rating }}</td>
+			<td>{{ restaurant.rating_color }}</td>
+			<td>{{ restaurant.rating_text }}</td>
+			<td>{{ restaurant.votes }}</td>
+	    </tr>
+	</tbody>	
+    {% endfor %}
+</table>
+
+<script type="text/javascript">
+	$(document).ready( function () {
+	    $('#myTable').DataTable();
+	} );
+</script>
+
+{% endblock %}
+
