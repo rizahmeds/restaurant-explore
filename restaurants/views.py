@@ -6,6 +6,3 @@ from restaurants.models import Restaurants
 # Create your views here.
 class RestaurantList(ListView):
     model = Restaurants
-
-def index(render):
-	return HttpResponse("Heelo world")
