@@ -22,12 +22,8 @@
 				        <th>Restaurant id</th>
 				        <th>Name</th>
 				        <th>Cuisines</th>
-						<th>Average cost for two</th>
 						<th>Currency</th>
-						<th>Has table booking</th>
-						<th>Has online delivery</th>
 						<th>Aggregate rating</th>
-						<th>Rating color</th>
 						<th>Rating text</th>
 						<th>Votes</th></th>
 						<th>Actions</th>
@@ -36,15 +32,15 @@
                 <tbody>
                 	{% for restaurant in object_list %}
                     <tr>
-                        <td>{{ restaurant.restaurant_id }}</td>
+                        <td> 
+                        	<a href="{% url 'restaurant-detail' restaurant.restaurant_id %}"> 
+                        		{{ restaurant.restaurant_id }} 
+                        	</a> 
+                        </td>
 				        <td>{{ restaurant.restaurant_name }}</td>
 						<td>{{ restaurant.cuisines }}</td>
-						<td>{{ restaurant.average_cost_for_two }}</td>
 						<td>{{ restaurant.currency }}</td>
-						<td>{{ restaurant.has_table_booking }}</td>
-						<td>{{ restaurant.has_online_delivery }}</td>
 						<td>{{ restaurant.aggregate_rating }}</td>
-						<td>{{ restaurant.rating_color }}</td>
 						<td>{{ restaurant.rating_text }}</td>
 						<td>{{ restaurant.votes }}</td>
                         <td>
@@ -55,18 +51,36 @@
      				{% endfor %}
                 </tbody>
             </table>
-			<div class="clearfix">
-                <div class="hint-text">Showing <b>5</b> out of <b>25</b> entries</div>
-                <ul class="pagination">
-                    <li class="page-item disabled"><a href="#">Previous</a></li>
-                    <li class="page-item"><a href="#" class="page-link">1</a></li>
-                    <li class="page-item"><a href="#" class="page-link">2</a></li>
-                    <li class="page-item active"><a href="#" class="page-link">3</a></li>
-                    <li class="page-item"><a href="#" class="page-link">4</a></li>
-                    <li class="page-item"><a href="#" class="page-link">5</a></li>
-                    <li class="page-item"><a href="#" class="page-link">Next</a></li>
-                </ul>
-            </div>
+            {% if is_paginated %}
+				<div class="clearfix">
+	                <div class="hint-text">
+	                	Showing <b>{{ page_obj.start_index }} to {{ page_obj.end_index }}</b> out of <b>{{ page_obj.paginator.count }}</b> entries
+	                </div>
+	                <ul class="pagination">
+	                	{% if page_obj.has_previous %}
+		                    <li class="page-item">
+		                    	<a href="{{ request.path }}?page={{ page_obj.previous_page_number }}">
+		                    		Previous
+		                    	</a>
+		                    </li>
+		                {% endif %}
+		                
+		                {% for i in paginator.page_range %}
+      						{% if page_obj.number == i %}
+	                    		<li class="page-item active"><a href="#" class="page-link">{{ i }}</a></li>
+	                    	{% else %}
+	                    		<li class="page-item"><a href="?page={{ i }}" class="page-link">{{ i }}</a></li>
+	                    	{% endif %}
+    					{% endfor %}
+
+	                    {% if page_obj.has_next %}
+	                    	<li class="page-item">
+	                    		<a href="{{ request.path }}?page={{ page_obj.next_page_number }}" class="page-link">Next</a>
+	                    	</li>
+	                    {% endif %}
+	                </ul>
+	            </div>
+	        {% endif %}
         </div>
     </div>
 	<!-- Edit Modal HTML -->

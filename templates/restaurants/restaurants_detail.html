@@ -1,0 +1,75 @@
+{% extends 'base.html' %}
+
+{% block title %}Restaurant Detail{% endblock %}
+
+{% block content %}
+	<div class="row panel panel-success" style="margin-top:2%;">
+	    <div class="panel-heading lead">
+	        <div class="row">
+	            <div class="col-lg-8 col-md-8">
+	            	<center> Restaurant {{object.restaurant_name}} Details </center>
+	            </div>
+	        </div>
+	    </div>
+	    <div class="panel-body">
+	        <div class="row">
+	            <div class="col-lg-12 col-md-12">
+	                <div class="row">
+	                    <div class="col-lg-6 col-md-6 col-md-offset-3">
+	                        
+                            <table class="table">
+                                <tbody>
+                                    <tr>
+                                        <td class="text-success"> Restaurant id </td>
+                                        <td>{{ object.restaurant_id }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="text-success"> Name </td>
+                                        <td>{{ object.restaurant_name }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="text-success"> Cuisines </td>
+                                        <td>{{ object.cuisines }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="text-success"> Average cost for two </td>
+                                        <td>{{ object.average_cost_for_two }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="text-success"> Currency </td>
+                                        <td>{{ object.currency }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="text-success"> Has table booking </td>
+                                        <td>{{ object.has_table_booking }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="text-success"> Has online delivery </td>
+                                        <td>{{ object.has_online_delivery }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="text-success"> Aggregate rating 	</td>
+                                        <td>{{ object.aggregate_rating }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="text-success"> Rating color </td>
+                                        <td>{{ object.rating_color }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="text-success"> Rating text </td>
+                                        <td>{{ object.rating_text }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="text-success"> Votes </td>
+                                        <td>{{ object.votes }}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+	                    </div>         
+	                </div>
+	            </div>
+	        </div>
+	        <!-- /.table-responsive -->
+	    </div>
+	</div>
+{% endblock %}
